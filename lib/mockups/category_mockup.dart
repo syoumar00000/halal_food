@@ -1,0 +1,103 @@
+//category mockup data
+import 'package:h_food/models/category_model.dart';
+
+final List<CategoryModel> categoryMockup = [
+  CategoryModel(
+    id: 1,
+    featured: true,
+    title: "Bakery",
+    icon: "assets/images/categories/bakery_icon.png",
+    image: "assets/images/categories/bakery_img.jpg",
+  ),
+  CategoryModel(
+    id: 2,
+    featured: false,
+    title: "Barbecue",
+    icon: "assets/images/categories/barbecue_icon.png",
+    image: "assets/images/categories/barbecue_img.jpg",
+  ),
+  CategoryModel(
+    id: 3,
+    featured: false,
+    title: "Burger",
+    icon: "assets/images/categories/burger_icon.png",
+    image: "assets/images/categories/burger_img.jpg",
+  ),
+  CategoryModel(
+    id: 4,
+    featured: true,
+    title: "Chicken",
+    icon: "assets/images/categories/chicken_icon.png",
+    image: "assets/images/categories/chicken_img.jpg",
+  ),
+  CategoryModel(
+    id: 5,
+    featured: false,
+    title: "Chinesse Food",
+    icon: "assets/images/categories/chinese_food_icon.png",
+    image: "assets/images/categories/chinese_food_img.jpg",
+  ),
+  CategoryModel(
+    id: 6,
+    featured: false,
+    title: "Coffee",
+    icon: "assets/images/categories/coffee_icon.png",
+    image: "assets/images/categories/coffee_img.jpg",
+  ),
+  CategoryModel(
+    id: 7,
+    featured: true,
+    title: "Dessert",
+    icon: "assets/images/categories/dessert_icon.png",
+    image: "assets/images/categories/dessert_img.jpg",
+  ),
+  CategoryModel(
+    id: 8,
+    featured: true,
+    title: "Drink",
+    icon: "assets/images/categories/drink_icon.png",
+    image: "assets/images/categories/drink_img.jpg",
+  ),
+  CategoryModel(
+    id: 9,
+    featured: false,
+    title: "Fried",
+    icon: "assets/images/categories/fried_icon.png",
+    image: "assets/images/categories/fried_img.jpg",
+  ),
+  CategoryModel(
+    id: 10,
+    featured: true,
+    title: "Hot Dog",
+    icon: "assets/images/categories/hot_dog_icon.png",
+    image: "assets/images/categories/hot_dog_img.jpg",
+  ),
+  CategoryModel(
+    id: 11,
+    featured: false,
+    title: "Pasta",
+    icon: "assets/images/categories/pasta_icon.png",
+    image: "assets/images/categories/pasta_img.jpg",
+  ),
+  CategoryModel(
+    id: 12,
+    featured: true,
+    title: "Pizza",
+    icon: "assets/images/categories/pizza_icon.png",
+    image: "assets/images/categories/burger_img.jpg",
+  ),
+  CategoryModel(
+    id: 13,
+    featured: true,
+    title: "Sandwich",
+    icon: "assets/images/categories/sandwich_icon.png",
+    image: "assets/images/categories/sandwich_img.jpg",
+  ),
+  CategoryModel(
+    id: 14,
+    featured: false,
+    title: "Vegan",
+    icon: "assets/images/categories/vegan_food_icon.png",
+    image: "assets/images/categories/vegan_food_img.jpg",
+  ),
+];
