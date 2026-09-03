@@ -1,5 +1,6 @@
 // lib/models/ProductsMockup_model.dart
 import 'package:h_food/configs/app_config.dart';
+import 'package:h_food/models/restaurant_model.dart';
 
 import 'category_model.dart';
 
@@ -16,6 +17,7 @@ class ProductsModel {
   final double? rate;
   final int? favoriteCount;
   final int? orderCount;
+  final RestaurantModel? restaurant;
 
   // Utilisation de nos classes définies plus bas
   final List<PriceItem>? prices;
@@ -27,6 +29,7 @@ class ProductsModel {
     this.id,
     this.title,
     this.description,
+    this.restaurant,
     this.cookDuration,
     this.calories,
     this.category,

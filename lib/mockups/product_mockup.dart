@@ -1,29 +1,72 @@
 import 'package:h_food/models/category_model.dart';
 import 'package:h_food/models/product_model.dart';
+import 'package:h_food/models/restaurant_model.dart';
+
+final RestaurantModel crestaBurger = RestaurantModel(
+  id: 1,
+  title: "Burger King",
+  icon: "assets/icons/burger-king.png",
+);
+final RestaurantModel crestaPizza = RestaurantModel(
+  id: 2,
+  title: "Pizza Hut",
+  icon: "assets/icons/pizza-hut.png",
+);
+final RestaurantModel crestaMcDo = RestaurantModel(
+  id: 3,
+  title: "McDonald",
+  icon: "assets/icons/mcdonald.svg",
+);
+final RestaurantModel crestaKfc = RestaurantModel(
+  id: 4,
+  title: "KFC chicken box",
+  icon: "assets/icons/kfc.svg",
+);
+final RestaurantModel crestaChinese = RestaurantModel(
+  id: 5,
+  title: "China Foods",
+  icon: "assets/icons/nouilles.png",
+);
 
 final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 1,
     title: "Bakery 1",
     calories: 175,
-    prices: [PriceItem("", 1.99)],
-    options: [],
+    prices: [
+      PriceItem("Small", 1.99),
+      PriceItem("Medium", 2.99),
+      PriceItem("Large", 3.99),
+    ],
+    options: const [],
+    restaurant: crestaBurger,
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
-    category: CategoryModel(id: 1),
+    category: CategoryModel(
+      id: 1,
+      title: "Bakery",
+      icon: "assets/images/categories/bakery_icon.png",
+    ),
     cookDuration: 0,
-    discount: 0,
+    discount:
+        0.10, // 💡 Mis à 0.10 (10%) pour tester vos calculs de prix nets sur les tailles !
     featured: false,
     rate: 4.6,
     favoriteCount: 15,
     orderCount: 164,
     image: "assets/images/items/bakery1.jpg",
   ),
+
   ProductsModel(
     id: 2,
     title: "Bakery 2",
     calories: 185,
-    prices: [PriceItem("", 2.99)],
+    restaurant: crestaBurger,
+    prices: [
+      PriceItem("Small", 1.99),
+      PriceItem("Medium", 2.99),
+      PriceItem("Large", 3.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -39,8 +82,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 3,
     title: "Barbecue",
+    restaurant: crestaKfc,
     calories: 1200,
-    prices: [PriceItem("medium", 9.99), PriceItem("large", 15.99)],
+    prices: [
+      PriceItem("small", 5.99),
+      PriceItem("medium", 9.99),
+      PriceItem("large", 15.99),
+    ],
     options: [
       OptionItem("Drink", ["coca cola", "sprite", "fanta", "pepsi"], false),
       OptionItem("Sauce", [
@@ -65,6 +113,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 4,
     title: "Burger 1",
+    restaurant: crestaBurger,
     calories: 1400,
     prices: [
       PriceItem("small", 4.99),
@@ -93,6 +142,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 5,
     title: "Burger Menu S",
+    restaurant: crestaBurger,
     calories: 2400,
     prices: [
       PriceItem("small", 6.99),
@@ -123,8 +173,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 6,
     title: "Full Burger",
+    restaurant: crestaBurger,
     calories: 2400,
-    prices: [PriceItem("medium", 8.99), PriceItem("large", 9.99)],
+    prices: [
+      PriceItem("small", 3.99),
+      PriceItem("medium", 8.99),
+      PriceItem("large", 9.99),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -147,8 +202,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 7,
     title: "Meat Burger",
+    restaurant: crestaBurger,
     calories: 1800,
-    prices: [PriceItem("medium", 7.99), PriceItem("large", 8.99)],
+    prices: [
+      PriceItem("small", 3.99),
+      PriceItem("medium", 7.99),
+      PriceItem("large", 8.99),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -172,7 +232,12 @@ final List<ProductsModel> productMockup = [
     id: 8,
     title: "Chicken 1",
     calories: 1750,
-    prices: [PriceItem("half chicken", 2.99), PriceItem("Whole chicken", 3.99)],
+    restaurant: crestaKfc,
+    prices: [
+      PriceItem(" 1/4 chicken", 1.99),
+      PriceItem("1/2 chicken", 3.99),
+      PriceItem("1 chicken", 4.99),
+    ],
     options: [
       OptionItem("Fried sides", ["potato fried", "yam fried"], false),
     ],
@@ -190,8 +255,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 9,
     title: "Chicken 2",
+    restaurant: crestaKfc,
     calories: 2150,
-    prices: [PriceItem("half chicken", 3.99), PriceItem("Whole chicken", 4.99)],
+    prices: [
+      PriceItem(" 1/4 chicken", 1.99),
+      PriceItem("1/2 chicken", 3.99),
+      PriceItem("1 chicken", 4.99),
+    ],
     options: [
       OptionItem("Fried sides", ["potato fried", "yam fried"], false),
     ],
@@ -209,8 +279,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 10,
     title: "Chicken 3",
+    restaurant: crestaKfc,
     calories: 1950,
-    prices: [PriceItem("half chicken", 3.99), PriceItem("Whole chicken", 4.99)],
+    prices: [
+      PriceItem(" 1/4 chicken", 1.99),
+      PriceItem("1/2 chicken", 3.99),
+      PriceItem("1 chicken", 4.99),
+    ],
     options: [
       OptionItem("Fried sides", ["potato fried", "yam fried"], false),
     ],
@@ -228,8 +303,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 11,
     title: "Chinese Food 1",
+    restaurant: crestaChinese,
     calories: 900,
-    prices: [PriceItem("", 2.99)],
+    prices: [
+      PriceItem("Small", 1.99),
+      PriceItem("Medium", 3.99),
+      PriceItem("Large", 4.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -245,8 +325,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 12,
     title: "Chinese Food 2",
+    restaurant: crestaChinese,
     calories: 950,
-    prices: [PriceItem("", 3.99)],
+    prices: [
+      PriceItem("small", 1.99),
+      PriceItem("medium", 3.99),
+      PriceItem("large", 7.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -262,8 +347,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 13,
     title: "Chinese Food 3",
+    restaurant: crestaChinese,
     calories: 900,
-    prices: [PriceItem("", 5.99)],
+    prices: [
+      PriceItem("small", 1.99),
+      PriceItem("medium", 3.99),
+      PriceItem("large", 5.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -279,8 +369,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 14,
     title: "Chinese Food 4",
+    restaurant: crestaChinese,
     calories: 900,
-    prices: [PriceItem("", 1.99)],
+    prices: [
+      PriceItem("small", 1.99),
+      PriceItem("medium", 3.99),
+      PriceItem("large", 6.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -296,6 +391,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 15,
     title: "Coffee A",
+    restaurant: crestaBurger,
     calories: 20,
     prices: [PriceItem("25 cl", 0.99), PriceItem("35 cl", 1.99)],
     options: [
@@ -316,6 +412,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 16,
     title: "Coffee B",
+    restaurant: crestaBurger,
     calories: 30,
     prices: [PriceItem("33 cl", 0.99), PriceItem("50 cl", 1.99)],
     options: [
@@ -336,8 +433,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 17,
     title: "Pancakes",
+    restaurant: crestaBurger,
     calories: 450,
-    prices: [PriceItem("", 2.99)],
+    prices: [
+      PriceItem("small", 2.99),
+      PriceItem("medium", 5.99),
+      PriceItem("large", 8.99),
+    ],
     options: [
       OptionItem("Chocolate", ["Nutella", "Choco Quick", "ChocoMilk"], false),
       OptionItem("Sugar", ["No sugar", "Honey", "sugar"], false),
@@ -356,8 +458,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 18,
     title: "Dessert",
+    restaurant: crestaPizza,
     calories: 850,
-    prices: [PriceItem("", 3.99)],
+    prices: [
+      PriceItem("small", 1.99),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 3.99),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -373,6 +480,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 19,
     title: "Limonade",
+    restaurant: crestaPizza,
     calories: 80,
     prices: [PriceItem("", 4.99)],
     options: [
@@ -397,6 +505,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 20,
     title: "Pepsi",
+    restaurant: crestaKfc,
     calories: 160,
     prices: [PriceItem("33 cl", 0.99), PriceItem("50 cl", 1.99)],
     options: [],
@@ -414,6 +523,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 21,
     title: "Potato Fried",
+    restaurant: crestaKfc,
     calories: 600,
     prices: [
       PriceItem("250 g", 0.99),
@@ -435,8 +545,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 22,
     title: "Hot Dog 1",
+    restaurant: crestaBurger,
     calories: 1100,
-    prices: [PriceItem("", 1)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -459,8 +574,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 23,
     title: "Hot Dog Max",
+    restaurant: crestaBurger,
     calories: 1100,
-    prices: [PriceItem("", 1.29)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -483,8 +603,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 24,
     title: "Pasta 1",
+    restaurant: crestaChinese,
     calories: 750,
-    prices: [PriceItem("", 2.49)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -501,7 +626,12 @@ final List<ProductsModel> productMockup = [
     id: 25,
     title: "Pasta 2",
     calories: 750,
-    prices: [PriceItem("", 2.59)],
+    restaurant: crestaChinese,
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -517,6 +647,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 26,
     title: "Silver Pizza",
+    restaurant: crestaPizza,
     calories: 1100,
     prices: [
       PriceItem("small", 5.99),
@@ -545,6 +676,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 27,
     title: "Golden Pizza",
+    restaurant: crestaPizza,
     calories: 1000,
     prices: [
       PriceItem("small", 6),
@@ -573,6 +705,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 28,
     title: "Pizza S",
+    restaurant: crestaPizza,
     calories: 1250,
     prices: [
       PriceItem("small", 5.99),
@@ -601,6 +734,7 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 29,
     title: "Pizza X",
+    restaurant: crestaPizza,
     calories: 1150,
     prices: [
       PriceItem("small", 5.5),
@@ -629,8 +763,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 30,
     title: "Sandwich A",
+    restaurant: crestaBurger,
     calories: 850,
-    prices: [PriceItem("small", 0.79), PriceItem("medium", 0.99)],
+    prices: [
+      PriceItem("small", 0.79),
+      PriceItem("medium", 0.99),
+      PriceItem("large", 1.97),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -653,8 +792,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 31,
     title: "Sandwich S",
+    restaurant: crestaMcDo,
     calories: 950,
-    prices: [PriceItem("small", 0.89), PriceItem("medium", 1.19)],
+    prices: [
+      PriceItem("small", 0.89),
+      PriceItem("medium", 1.19),
+      PriceItem("large", 2.66),
+    ],
     options: [
       OptionItem("Sauce", [
         "mayonnaise",
@@ -677,8 +821,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 32,
     title: "Vegan Food A",
+    restaurant: crestaChinese,
     calories: 300,
-    prices: [PriceItem("", 3)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -694,8 +843,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 33,
     title: "Vegan Food B",
+    restaurant: crestaChinese,
     calories: 300,
-    prices: [PriceItem("", 3.5)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",
@@ -711,8 +865,13 @@ final List<ProductsModel> productMockup = [
   ProductsModel(
     id: 34,
     title: "Vegan Food S",
+    restaurant: crestaChinese,
     calories: 300,
-    prices: [PriceItem("", 3.5)],
+    prices: [
+      PriceItem("small", 1.66),
+      PriceItem("medium", 2.99),
+      PriceItem("large", 2.33),
+    ],
     options: [],
     description:
         "Lorem ipsum dolor sit amet. Qui minima inventore vel nisi laudantium ut accusantium beatae aut quas sint ab nulla beatae et dolor autem? Quo quibusdam iste qui reiciendis enim aut ipsum facere.",

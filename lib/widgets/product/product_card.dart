@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h_food/models/product_model.dart';
-import 'package:h_food/styles/input/favorite_button.dart';
+import 'package:h_food/screens/product/product_screen.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductsModel product;
@@ -11,12 +11,18 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //navigator.push to productscreen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(product: product),
+          ),
+        );
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xffffffff),
+          color: Color(0xff727272).withAlpha(25),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withAlpha(1),
@@ -27,7 +33,7 @@ class ProductCard extends StatelessWidget {
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
@@ -38,7 +44,8 @@ class ProductCard extends StatelessWidget {
                     child: Image.asset(product.image!),
                   ),
                 ),
-                Align(
+
+                /*    Align(
                   alignment: Alignment.topLeft,
                   child: Container(
                     height: 20,
@@ -62,8 +69,44 @@ class ProductCard extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: FavoriteButton(product: product),
-                ),
+                ), */
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                product.title!,
+                style: TextStyle(
+                  color: Color(0xff303030),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Text(
+                    "${product.calories} EGP",
+                    style: TextStyle(
+                      color: Color(0xfff45a08),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      color: Color(0xfff45a08),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Icon(Icons.add, size: 20, color: Color(0xffffffff)),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

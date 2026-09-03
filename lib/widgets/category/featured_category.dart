@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h_food/models/category_model.dart';
 import 'package:h_food/providers/product_provider.dart';
+import 'package:h_food/screens/product/product_list_screen.dart';
 import 'package:provider/provider.dart';
 
 class FeaturedCategory extends StatelessWidget {
@@ -15,31 +16,52 @@ class FeaturedCategory extends StatelessWidget {
           context,
           listen: false,
         ).getByCategory(category);
-        //navigator. push to productListScreen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductListScreen(category: category),
+          ),
+        );
       },
       child: Container(
-        width: 75,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        margin: EdgeInsets.symmetric(horizontal: 3),
-        padding: EdgeInsets.all(5),
-        child: Column(
+        height: 60,
+        width: 130,
+        margin: const EdgeInsets.only(right: 12.0, top: 2.0, bottom: 2.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Color(0xff303030).withAlpha(55),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(20),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
           children: [
             Container(
-              padding: EdgeInsets.all(8),
+              height: 60,
+              width: 60,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(60),
+                color: Color(0xffffffff),
+                image: DecorationImage(
+                  image: AssetImage(category.icon!),
+                  fit: BoxFit.cover,
+                ),
               ),
-              child: Image.asset(category.icon!, height: 42),
             ),
-            SizedBox(height: 5),
-            Text(
-              category.title!,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+            SizedBox(width: 6),
+            Expanded(
+              child: Text(
+                category.title!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: Color(0xff303030)),
+              ),
             ),
+            const SizedBox(width: 8),
           ],
         ),
       ),
