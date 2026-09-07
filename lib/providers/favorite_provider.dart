@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:h_food/mockups/product_mockup.dart';
+import 'package:h_food/mockups/restaurant_mockup.dart';
 import 'package:h_food/models/product_model.dart';
+import 'package:h_food/models/restaurant_model.dart';
 
 class FavoriteProvider extends ChangeNotifier {
   final List<ProductsModel> _items = [
@@ -27,6 +29,28 @@ class FavoriteProvider extends ChangeNotifier {
       _items.remove(existingProduct);
     }
 
+    notifyListeners();
+  }
+
+  final List<RestaurantModel> _restauItems = [
+    restaurantMockup[0],
+    restaurantMockup[1],
+    restaurantMockup[2],
+    restaurantMockup[3],
+    restaurantMockup[4],
+  ];
+  UnmodifiableListView<RestaurantModel> get restauItems =>
+      UnmodifiableListView(_restauItems);
+  bool isLiked(RestaurantModel element) => restauItems.contains(element);
+  restauToogle(RestaurantModel restau) {
+    final existingRestau = _restauItems.firstWhereOrNull(
+      (element) => element.id == restau.id,
+    );
+    if (existingRestau == null) {
+      _restauItems.add(restau);
+    } else {
+      _restauItems.remove(existingRestau);
+    }
     notifyListeners();
   }
 }

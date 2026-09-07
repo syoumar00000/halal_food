@@ -10,6 +10,8 @@ import 'package:h_food/screens/home/widgets/home_popular.dart';
 import 'package:h_food/screens/home/widgets/home_products.dart';
 import 'package:h_food/screens/home/widgets/home_slide.dart';
 import 'package:h_food/screens/home/widgets/main-app_bar.dart';
+import 'package:h_food/screens/home/widgets/onglet_row.dart';
+import 'package:h_food/screens/home/widgets/restaurant_around.dart';
 import 'package:h_food/styles/spacing_style.dart';
 import 'package:provider/provider.dart';
 
@@ -38,25 +40,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const MainAppBar(),
-            KSpaceH(1.5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: HomeSlide(adsItems: adsState.items),
+      body: Column(
+        children: [
+          const MainAppBar(),
+          Expanded(
+            child: SafeArea(
+              top: false,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    KSpaceH(1.5),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: HomeSlide(adsItems: adsState.items),
+                    ),
+                    KSpaceH(1.5),
+                    HomeCategories(items: categoryState.items),
+                    KSpaceH(1.5),
+                    FeaturedPopular(),
+                    KSpaceH(1.5),
+                    RestaurantAround(),
+                  ],
+                ),
+              ),
             ),
-            KSpaceH(1.5),
-            HomeCategories(items: categoryState.items),
-            KSpaceH(1.5),
-            //HomePopular(popularState.items),
-            FeaturedPopular(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+//product.getFormattedPrice(product.prices![index])

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:h_food/models/product_model.dart';
-import 'package:h_food/styles/input/favorite_button.dart';
-import 'package:h_food/styles/spacing_style.dart';
+import 'package:h_food/models/restaurant_model.dart';
+import 'package:h_food/styles/input/like_button.dart';
 
-class ProductImage extends StatelessWidget {
-  final ProductsModel product;
-  const ProductImage({super.key, required this.product});
+class RestauImage extends StatelessWidget {
+  final RestaurantModel restaurant;
+  const RestauImage({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(product.image!),
+        Image.asset(restaurant.image!),
         SafeArea(
           child: Align(
             alignment: Alignment.topLeft,
@@ -41,7 +40,7 @@ class ProductImage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: Color(0xfff45a08),
               ),
-              child: FavoriteButton(product: product),
+              child: LikeButton(restau: restaurant),
             ),
           ),
         ),

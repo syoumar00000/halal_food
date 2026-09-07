@@ -14,12 +14,17 @@ class HomeCategories extends StatelessWidget {
       children: [
         OngletRow(label: "Categories", actionText: "See All"),
         KSpaceH(0.5),
-        SizedBox(
-          height: 60,
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            children: items.map((e) => FeaturedCategory(category: e)).toList(),
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: SizedBox(
+            height: 60,
+            child: ListView(
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              children: items
+                  .map((e) => FeaturedCategory(category: e))
+                  .toList(),
+            ),
           ),
         ),
       ],

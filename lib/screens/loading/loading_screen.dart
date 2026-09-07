@@ -5,6 +5,7 @@ import 'package:h_food/providers/ads_provider.dart';
 import 'package:h_food/providers/category_provider.dart';
 import 'package:h_food/providers/product_provider.dart';
 import 'package:h_food/providers/promotion_provider.dart';
+import 'package:h_food/providers/restaurant_provider.dart';
 import 'package:h_food/screens/onboarding/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       await context.read<PromotionProvider>().getAll();
       await context.read<AddressProvider>().getAll();
       await context.read<AdsProvider>().getAll();
+      await context.read<RestaurantProvider>().getAll();
       //await context.read<PaymentProvider>().getAllPaymentMethod();
       //await context.read<OrderProvider>().getAll();
       //await context.read<CustomerProvider>().get();

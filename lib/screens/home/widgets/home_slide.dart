@@ -1,7 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:h_food/models/ads_model.dart';
-import 'package:h_food/models/promotion_model.dart';
 import 'package:h_food/styles/button/default_button.dart';
 import 'package:h_food/widgets/indicator/slide_indicator.dart';
 
@@ -150,25 +148,5 @@ class _HomeSlideState extends State<HomeSlide> {
         ),
       ],
     );
-    /* CarouselSlider(
-      options: CarouselOptions(
-        aspectRatio: 2,
-        autoPlay: false,
-        viewportFraction: 1,
-      ),
-      items: items.map((item) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              margin: EdgeInsets.all(1),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(item.image!),
-              ),
-            );
-          },
-        );
-      }).toList(),
-    ); */
   }
 }
