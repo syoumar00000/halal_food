@@ -6,13 +6,11 @@ import 'package:h_food/providers/product_provider.dart';
 import 'package:h_food/providers/promotion_provider.dart';
 import 'package:h_food/screens/home/widgets/featured_popular.dart';
 import 'package:h_food/screens/home/widgets/home_categories.dart';
-import 'package:h_food/screens/home/widgets/home_popular.dart';
-import 'package:h_food/screens/home/widgets/home_products.dart';
 import 'package:h_food/screens/home/widgets/home_slide.dart';
 import 'package:h_food/screens/home/widgets/main-app_bar.dart';
-import 'package:h_food/screens/home/widgets/onglet_row.dart';
 import 'package:h_food/screens/home/widgets/restaurant_around.dart';
 import 'package:h_food/styles/spacing_style.dart';
+import 'package:h_food/widgets/navigation/main_bottom_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: MainBottomBar(currentIndex: 0),
     );
   }
 }

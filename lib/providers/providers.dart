@@ -1,6 +1,7 @@
 import 'package:h_food/models/restaurant_model.dart';
 import 'package:h_food/providers/address_provider.dart';
 import 'package:h_food/providers/ads_provider.dart';
+import 'package:h_food/providers/cart_provider.dart';
 import 'package:h_food/providers/category_provider.dart';
 import 'package:h_food/providers/favorite_provider.dart';
 import 'package:h_food/providers/popular_provider.dart';
@@ -11,7 +12,7 @@ import 'package:provider/provider.dart';
 
 final List<ChangeNotifierProvider> myProvider = [
   ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider()),
-  //ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
+  ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
   ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
   ChangeNotifierProvider<PopularProvider>(create: (_) => PopularProvider()),
   ChangeNotifierProvider<AdsProvider>(create: (_) => AdsProvider()),

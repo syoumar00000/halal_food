@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:h_food/models/restaurant_model.dart';
 import 'package:h_food/screens/restaurant/widgets/restau_image.dart';
+import 'package:h_food/styles/button/default_button.dart';
 import 'package:h_food/styles/spacing_style.dart';
 
 class RestaurantScreen extends StatelessWidget {
@@ -143,12 +144,12 @@ class RestaurantScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Container(
                       width: KscreenWidth(context),
-                      height: 90,
+                      height: 140,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 232, 247, 169),
+                        color: Color.fromARGB(255, 231, 233, 222),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -156,35 +157,88 @@ class RestaurantScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 15,
-                                    width: 15,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: Text(
-                                      "20%",
-                                      style: TextStyle(
-                                        color: Color(0xffffffff),
-                                        fontSize: 10,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10.0,
+                                  top: 10,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "20%",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xffffffff),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  Text(
-                                    "Off - the King's Combo!",
-                                    style: TextStyle(
-                                      color: Color(0xff303030),
-                                      fontSize: 15,
+                                    SizedBox(width: 4),
+                                    Text(
+                                      "Off - the King's Combo!",
+                                      style: TextStyle(
+                                        color: Color(0xff303030),
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 10, top: 10),
+                                child: Text(
+                                  "Burger - Fries - Chicken - Now Only \$ \n99 Limited times offer!",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Color(0xff303030),
+                                    fontSize: 13,
                                   ),
-                                ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 10, top: 10),
+                                child: DefaultButton(
+                                  onPressed: () {},
+                                  label: "View Offer",
+                                  backgroundColor: Color(0xfff45a08),
+                                  foregroundColor: Color(0xffffffff),
+                                  height: 38,
+                                  width: 130,
+                                ),
                               ),
                             ],
+                          ),
+                          Spacer(),
+                          Container(
+                            height: 140,
+                            width: KscreenWidth(context) / 3.4,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                                topLeft: Radius.circular(70.0),
+                                bottomLeft: Radius.circular(70.0),
+                              ),
+                            ),
+                            child: Image.asset(
+                              "assets/images/misc/discount.png",
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ],
                       ),
