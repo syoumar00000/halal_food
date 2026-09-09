@@ -1,4 +1,3 @@
-import 'package:h_food/models/restaurant_model.dart';
 import 'package:h_food/providers/address_provider.dart';
 import 'package:h_food/providers/ads_provider.dart';
 import 'package:h_food/providers/cart_provider.dart';

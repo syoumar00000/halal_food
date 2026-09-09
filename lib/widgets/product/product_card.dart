@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:h_food/modals/cart_product_modal/cart_item_modal.dart';
+import 'package:h_food/models/cart_model.dart';
 import 'package:h_food/models/product_model.dart';
+import 'package:h_food/providers/cart_provider.dart';
 import 'package:h_food/screens/product/product_screen.dart';
+import 'package:h_food/utils/add_to_cart_toast.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductsModel product;
@@ -96,14 +101,41 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                      color: Color(0xfff45a08),
-                      borderRadius: BorderRadius.circular(100),
+                  InkWell(
+                    onTap: () async {
+                      // add to cart from provider
+                      final cartState = Provider.of<CartProvider>(
+                        context,
+                        listen: false,
+                      );
+                      final CartItemModel cartItem =
+                          cartState.findCartItem(product) ??
+                          CartItemModel(
+                            product: product,
+                            selectedPrice: product.prices![0],
+                            quantity: 1,
+                          );
+                      cartState.setTempCartItem(cartItem);
+                      //show cart item dialog
+                      final result = await showCartItem(context, preview: true);
+                      //show added to cart toast
+                      if (result == true) {
+                        addToCartAlert(context, cartItem.product.title!);
+                      }
+                    },
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        color: Color(0xfff45a08),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Icon(
+                        Icons.add,
+                        size: 20,
+                        color: Color(0xffffffff),
+                      ),
                     ),
-                    child: Icon(Icons.add, size: 20, color: Color(0xffffffff)),
                   ),
                 ],
               ),
