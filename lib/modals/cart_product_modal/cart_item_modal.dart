@@ -14,53 +14,56 @@ Future<bool?> showCartItem(BuildContext context, {bool preview = true}) {
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (ctx) {
-      final cartState = Provider.of<CartProvider>(context, listen: true);
-      final cartItem = cartState.tempCartItem!;
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) => SafeArea(
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: KscreenHeight(context) - 100,
-            ),
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
+      // ─── LA CORRECTION PRINCIPALE : Utilisation de Consumer pour écouter le Provider en temps réel ───
+      return Consumer<CartProvider>(
+        builder: (context, cartState, child) {
+          // Récupération de l'item temporaire mis à jour dynamiquement
+          final cartItem = cartState.tempCartItem!;
+
+          return SafeArea(
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: KscreenHeight(context) - 100,
               ),
-            ),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //header
-                      CartItemHeader(cartItem: cartItem, preview: preview),
-                      KSpaceH(0.75),
-                      Divider(),
-                      KSpaceH(0.75),
-                      CartItemPriceOptions(
-                        currentValue: cartItem.selectedPrice,
-                        prices: cartItem.product.prices!,
-                        onChanged: (PriceItem? item) {
-                          setState(() {
-                            cartState.selectPrice(item!);
-                          });
-                        },
-                      ),
-                      KSpaceH(0.5),
-                      Divider(),
-                      KSpaceH(0.5),
-                      //product multiple options
-                      ...cartItem.product.options!.map(
-                        (option) => CartItemOptions(
-                          option: option,
+              padding: const EdgeInsets.all(12),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
+              child: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Header
+                        CartItemHeader(cartItem: cartItem, preview: preview),
+                        KSpaceH(0.75),
+                        const Divider(),
+                        KSpaceH(0.75),
+
+                        // Choix de la taille
+                        CartItemPriceOptions(
                           currentValue: cartItem.selectedPrice,
                           prices: cartItem.product.prices!,
-                          onChanged: (String? value, [bool? checked]) {
-                            setState(() {
+                          onChanged: (PriceItem? item) {
+                            cartState.selectPrice(item!);
+                          },
+                        ),
+                        KSpaceH(0.5),
+                        const Divider(),
+                        KSpaceH(0.5),
+
+                        // Options multiples
+                        ...cartItem.product.options!.map(
+                          (option) => CartItemOptions(
+                            option: option,
+                            currentValue: cartItem.selectedPrice,
+                            prices: cartItem.product.prices!,
+                            onChanged: (String? value, [bool? checked]) {
                               if (!option.multiple! && value != null) {
                                 cartState.setOption(option, value);
                               } else if (option.multiple! && value != null) {
@@ -70,50 +73,62 @@ Future<bool?> showCartItem(BuildContext context, {bool preview = true}) {
                                   checked: checked!,
                                 );
                               }
-                            });
-                          },
-                        ),
-                      ),
-                      //quantity
-                      CartItemQuantity(
-                        width: 50,
-                        height: 50,
-                        backgroungColor: Colors.grey.shade300,
-                        iconColor: Colors.black,
-                        quantity: cartItem.quantity.toString(),
-                        onIncrement: (value) {
-                          setState(() {
-                            cartState.incrementQuantity(value);
-                          });
-                        },
-                      ),
-                      //remove from cart confirmation button
-                      if (cartState.findCartItem(cartItem.product) != null) ...[
-                        KSpaceH(2),
-                        TextButton(
-                          onPressed: () {
-                            cartState.removeFromCart(cartItem);
-                            Navigator.pop(ctx);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.delete_outline),
-                              Text("Remove from cart"),
-                            ],
+                            },
                           ),
                         ),
+
+                        const SizedBox(height: 10),
+
+                        // ─── LA CORRECTION DU COMPTEUR ───
+                        // On utilise incrementQuantity qui cible directement l'item temporaire en cours de création
+                        CartItemQuantity(
+                          width: 50,
+                          height: 50,
+                          backgroungColor: Colors.grey.shade300,
+                          iconColor: Colors.black,
+                          quantity: cartItem.quantity.toString(),
+                          onIncrement: (value) {
+                            cartState.changeQuantity(
+                              1,
+                            ); // Ajoute 1 à l'item temporaire
+                          },
+                          onDecrement: (value) {
+                            cartState.changeQuantity(
+                              -1,
+                            ); // Retire 1 à l'item temporaire
+                          },
+                        ),
+
+                        // Bouton de suppression du panier (si déjà existant)
+                        if (cartState.findCartItem(cartItem.product) !=
+                            null) ...[
+                          KSpaceH(2),
+                          TextButton(
+                            onPressed: () {
+                              cartState.removeFromCart(cartItem);
+                              Navigator.pop(ctx);
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.delete_outline),
+                                SizedBox(width: 4),
+                                Text("Remove from cart"),
+                              ],
+                            ),
+                          ),
+                        ],
+                        KSpaceH(5.5),
                       ],
-                      KSpaceH(5.5),
-                    ],
+                    ),
                   ),
-                ),
-                //add to cart confirmation button
-                CartItemConfirm(cartItem: cartItem),
-              ],
+                  // Bouton de confirmation (Ajouter / Mettre à jour)
+                  CartItemConfirm(cartItem: cartItem),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
     },
   );

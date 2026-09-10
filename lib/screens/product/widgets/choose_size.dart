@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:h_food/models/product_model.dart';
 import 'package:h_food/screens/product/widgets/text_onglet.dart';
 
-class ChooseSize extends StatefulWidget {
+class ChooseSize extends StatelessWidget {
   final ProductsModel product;
-  const ChooseSize({super.key, required this.product});
+  final int selectedPriceIndex; // Reçoit l'index sélectionné du parent
+  final ValueChanged<int>
+  onSizeChanged; // Fonction pour notifier le parent du changement
 
-  @override
-  State<ChooseSize> createState() => _ChooseSizeState();
-}
+  const ChooseSize({
+    super.key,
+    required this.product,
+    required this.selectedPriceIndex,
+    required this.onSizeChanged,
+  });
 
-class _ChooseSizeState extends State<ChooseSize> {
-  int value = 1;
-  int _selectedPriceIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,18 +22,19 @@ class _ChooseSizeState extends State<ChooseSize> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextOnglet(label: "Choose Size"),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         RadioGroup<int>(
-          groupValue: _selectedPriceIndex,
+          groupValue:
+              selectedPriceIndex, // Utilise la valeur passée par le parent
           onChanged: (int? newIndex) {
-            setState(() {
-              _selectedPriceIndex = newIndex!;
-            });
+            if (newIndex != null) {
+              onSizeChanged(newIndex); // Déclenche la fonction du parent
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(widget.product.prices!.length, (index) {
-              final bool isSelected = _selectedPriceIndex == index;
+            children: List.generate(product.prices!.length, (index) {
+              final bool isSelected = selectedPriceIndex == index;
 
               return Container(
                 height: 120,
@@ -52,14 +55,13 @@ class _ChooseSizeState extends State<ChooseSize> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Le Radio moderne prend simplement sa valeur d'index
                     Radio<int>(
                       value: index,
                       activeColor: const Color(0xfff45a08),
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "${widget.product.prices![index].title}",
+                      "${product.prices![index].title}",
                       style: TextStyle(
                         color: isSelected
                             ? const Color(0xfff45a08)
@@ -72,9 +74,7 @@ class _ChooseSizeState extends State<ChooseSize> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      widget.product.getFormattedPrice(
-                        widget.product.prices![index],
-                      ),
+                      product.getFormattedPrice(product.prices![index]),
                       style: TextStyle(
                         color: isSelected
                             ? const Color(0xff303030)
@@ -92,7 +92,7 @@ class _ChooseSizeState extends State<ChooseSize> {
             }),
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
       ],
     );
   }

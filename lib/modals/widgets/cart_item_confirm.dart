@@ -20,7 +20,7 @@ class CartItemConfirm extends StatelessWidget {
         child: SizedBox(
           width: KscreenWidth(context) - 25,
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+            style: ElevatedButton.styleFrom(backgroundColor: Color(0xfff45a08)),
             onPressed: () {
               cartState.addToCart(cartItem);
               Navigator.pop(context, true);

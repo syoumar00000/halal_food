@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SmartCounter extends StatefulWidget {
-  const SmartCounter({super.key});
+class SmartCounter extends StatelessWidget {
+  final int selectedQuantity;
+  final ValueChanged<int> onQuantityChanged;
 
-  @override
-  State<SmartCounter> createState() => _SmartCounterState();
-}
+  const SmartCounter({
+    super.key,
+    required this.selectedQuantity,
+    required this.onQuantityChanged,
+  });
 
-class _SmartCounterState extends State<SmartCounter> {
-  int value = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,19 +22,14 @@ class _SmartCounterState extends State<SmartCounter> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // BOUTON MOINS
           GestureDetector(
             onTap: () {
-              if (value > 1) {
-                setState(() {
-                  value--;
-                });
-              }
+              if (selectedQuantity > 1) onQuantityChanged(selectedQuantity - 1);
             },
             child: Container(
               width: 36,
               height: 36,
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
@@ -45,30 +41,22 @@ class _SmartCounterState extends State<SmartCounter> {
               ),
             ),
           ),
-
-          // TEXTE DE LA VALEUR
           Text(
-            "$value",
+            "$selectedQuantity",
             style: const TextStyle(
               color: Color(0xff303030),
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-
-          // BOUTON PLUS
           GestureDetector(
-            onTap: () {
-              setState(() {
-                value++;
-              });
-            },
+            onTap: () => onQuantityChanged(selectedQuantity + 1),
             child: Container(
               width: 36,
               height: 36,
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               decoration: const BoxDecoration(
-                color: Color(0xfff45a08), // Orange signature
+                color: Color(0xfff45a08),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.add, color: Colors.white, size: 18),

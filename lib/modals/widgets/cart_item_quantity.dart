@@ -8,10 +8,12 @@ class CartItemQuantity extends StatelessWidget {
   final Color iconColor;
   final Color backgroungColor;
   final Function(int value) onIncrement;
+  final Function(int value) onDecrement;
   const CartItemQuantity({
     super.key,
     required this.quantity,
     required this.onIncrement,
+    required this.onDecrement,
     required this.width,
     required this.height,
     required this.iconColor,
@@ -20,6 +22,9 @@ class CartItemQuantity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*  Text(
+                              " $KCurrency${cartState.cart.total.toStringAsFixed(2)}",
+                            ), */
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -33,7 +38,7 @@ class CartItemQuantity extends StatelessWidget {
               shape: CircleBorder(),
               elevation: 0,
             ),
-            onPressed: () => onIncrement(-1),
+            onPressed: () => onDecrement(-1),
             child: Icon(
               Icons.remove,
               size: width >= 50 ? 25 : 15,

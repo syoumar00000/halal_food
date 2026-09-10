@@ -29,7 +29,7 @@ class FeaturedCategory extends StatelessWidget {
         margin: const EdgeInsets.only(right: 12.0, top: 2.0, bottom: 2.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Color(0xff303030).withAlpha(55),
+          color: Color(0xff303030).withAlpha(25),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withAlpha(20),

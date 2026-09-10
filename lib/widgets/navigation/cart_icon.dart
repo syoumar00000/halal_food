@@ -17,7 +17,7 @@ class CartIcon extends StatelessWidget {
               height: 15,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: Color(0xfff45a08),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Text(

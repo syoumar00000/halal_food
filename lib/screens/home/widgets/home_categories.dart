@@ -13,7 +13,7 @@ class HomeCategories extends StatelessWidget {
     return Column(
       children: [
         OngletRow(label: "Categories", actionText: "See All"),
-        KSpaceH(0.5),
+        KSpaceH(1.5),
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: SizedBox(

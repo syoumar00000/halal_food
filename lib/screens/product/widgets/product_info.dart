@@ -6,7 +6,12 @@ import 'package:h_food/screens/product/widgets/text_onglet.dart';
 
 class ProductInfo extends StatefulWidget {
   final ProductsModel product;
-  const ProductInfo({super.key, required this.product});
+  final ValueChanged<int> onQuantityChanged;
+  const ProductInfo({
+    super.key,
+    required this.product,
+    required this.onQuantityChanged,
+  });
 
   @override
   State<ProductInfo> createState() => _ProductInfoState();
@@ -14,6 +19,7 @@ class ProductInfo extends StatefulWidget {
 
 class _ProductInfoState extends State<ProductInfo> {
   int value = 1;
+  int _quantity = 1;
   @override
   Widget build(BuildContext context) {
     final String iconPath = widget.product.restaurant?.icon ?? '';
@@ -45,7 +51,16 @@ class _ProductInfoState extends State<ProductInfo> {
             const SizedBox(width: 10),
 
             // COMPTEUR DE QUANTITÉ SMART
-            SmartCounter(),
+            SmartCounter(
+              selectedQuantity: _quantity,
+              onQuantityChanged: (newQuantity) {
+                setState(() {
+                  _quantity =
+                      newQuantity; // Met à jour la quantité et rafraîchit l'écran
+                });
+                widget.onQuantityChanged(newQuantity);
+              },
+            ),
           ],
         ),
         SizedBox(height: 15),

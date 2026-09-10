@@ -53,12 +53,36 @@ class CartProvider with ChangeNotifier {
   }
 
   // 3. BOUTONS QUANTITÉ + ET -
-  void incrementQuantity(int value) {
+  void changeQuantity(int value) {
     if (_tempCartItem != null) {
       if ((_tempCartItem!.quantity + value) > 0) {
         _tempCartItem!.quantity += value;
         notifyListeners();
       }
+    }
+  }
+
+  // 3b. LA CORRECTION : MODIFICATION CIBLÉE DE LA QUANTITÉ DANS LE PANIER
+  void updateCartItemQuantity(CartItemModel item, int value) {
+    final index = _cart.cartItems.indexWhere(
+      (element) =>
+          element.product.id == item.product.id &&
+          element.selectedPrice.title == item.selectedPrice.title,
+    );
+
+    if (index != -1) {
+      final int newQuantity = _cart.cartItems[index].quantity + value;
+
+      if (newQuantity <= 0) {
+        // Si la quantité tombe à 0, on retire l'élément du panier
+        _cart.cartItems.removeAt(index);
+      } else {
+        // On met à jour uniquement la quantité
+        _cart.cartItems[index].quantity = newQuantity;
+      }
+
+      // La méthode _updateCartTotal prend déjà en compte (amount * quantity) !
+      _updateCartTotal();
     }
   }
 
@@ -88,7 +112,7 @@ class CartProvider with ChangeNotifier {
   // 6. VIDER LE PANIER (Correction du crash du reduce)
   void clearCart() {
     _cart.cartItems.clear();
-    _cart.total = 0.0; // 🟢 CORRECTION : Évite le plantage du panier vide
+    _cart.total = 0.0; //  CORRECTION : Évite le plantage du panier vide
     notifyListeners();
   }
 
@@ -106,7 +130,7 @@ class CartProvider with ChangeNotifier {
 
   // FONCTION PRIVÉE DE CALCUL DU TOTAL DE MANIÈRE SÉCURISÉE
   void _updateCartTotal() {
-    // 🟢 CORRECTION : .fold() démarre à 0.0 et ne crashe jamais, même si la liste est vide !
+    //  CORRECTION : .fold() démarre à 0.0 et ne crashe jamais, même si la liste est vide !
     _cart.total = _cart.cartItems.fold<double>(
       0.0,
       (previousValue, item) =>

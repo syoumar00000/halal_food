@@ -153,18 +153,28 @@ class _CartListItemState extends State<CartListItem> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "$KCurrency${widget.cartItem.total}",
+                            "$KCurrency${widget.cartItem.total.toStringAsFixed(2)}",
                             style: KSubtitle1(context)?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: const Color(0xfff45a08),
                             ),
                           ),
+                          // DANS VOTRE CARTLISTITEM (Fichier : cart_list_item.dart)
                           CartItemQuantity(
                             quantity: widget.cartItem.quantity.toString(),
-                            onIncrement: (value) {
-                              setState(() {
-                                widget.cartState.incrementQuantity(value);
-                              });
+                            onIncrement: (newValue) {
+                              // ➔ On cible le bon produit et on lui ajoute exactement 1
+                              widget.cartState.updateCartItemQuantity(
+                                widget.cartItem,
+                                1,
+                              );
+                            },
+                            onDecrement: (newValue) {
+                              // ➔ On cible le bon produit et on lui retire exactement 1
+                              widget.cartState.updateCartItemQuantity(
+                                widget.cartItem,
+                                -1,
+                              );
                             },
                             width: 30,
                             height: 30,
