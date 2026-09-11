@@ -106,7 +106,7 @@ class CartProvider with ChangeNotifier {
     _cart.cartItems.removeWhere(
       (element) => element.product.id == item.product.id,
     );
-    _updateCartTotal(); // 🟢 CORRECTION : On recalcule le prix APRÈS avoir supprimé l'élément
+    _updateCartTotal(); //  CORRECTION : On recalcule le prix APRÈS avoir supprimé l'élément
   }
 
   // 6. VIDER LE PANIER (Correction du crash du reduce)

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h_food/providers/ads_provider.dart';
 import 'package:h_food/providers/category_provider.dart';
-import 'package:h_food/providers/popular_provider.dart';
 import 'package:h_food/providers/product_provider.dart';
-import 'package:h_food/providers/promotion_provider.dart';
 import 'package:h_food/screens/home/widgets/featured_popular.dart';
 import 'package:h_food/screens/home/widgets/home_categories.dart';
 import 'package:h_food/screens/home/widgets/home_slide.dart';
@@ -23,18 +21,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final promotionState = context.read<PromotionProvider>();
+    //final promotionState = context.read<PromotionProvider>();
     final categoryState = context.read<CategoryProvider>();
     final productState = context.read<ProductProvider>();
     final adsState = context.read<AdsProvider>();
-    final popularState = context.read<PopularProvider>();
+    //final popularState = context.read<PopularProvider>();
 
     final _productByOrders = [...productState.items];
     _productByOrders.sort(
       (a, b) => (b.orderCount ?? 0).compareTo(a.orderCount ?? 0),
     );
 
-    final _mostOrderedProducts = _productByOrders.take(2).toList();
+    //final _mostOrderedProducts = _productByOrders.take(2).toList();
 
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
