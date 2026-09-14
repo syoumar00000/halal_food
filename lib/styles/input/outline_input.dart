@@ -13,8 +13,8 @@ class OutlineInput extends StatelessWidget {
   final bool hidden;
   const OutlineInput({
     super.key,
-    this.hint ="",
-    this.label ="",
+    this.hint = "",
+    this.label = "",
     this.lines = 1,
     this.controller,
     this.maxLength,
@@ -23,7 +23,7 @@ class OutlineInput extends StatelessWidget {
     this.type,
     this.padding,
     this.hidden = false,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +41,13 @@ class OutlineInput extends StatelessWidget {
         suffixIcon: suffix,
         prefixIcon: prefix,
         prefixIconColor: Colors.grey[400],
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
         enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
         hintText: hint,
-        hintStyle: TextStyle(
-          color: Colors.grey[400],
-        ),
-        floatingLabelBehavior: label == null 
-        ? FloatingLabelBehavior.never 
-        : FloatingLabelBehavior.always,
+        hintStyle: TextStyle(color: Colors.grey[400]),
+        floatingLabelBehavior: label == null
+            ? FloatingLabelBehavior.never
+            : FloatingLabelBehavior.always,
         labelText: label ?? hint,
         alignLabelWithHint: true,
       ),

@@ -49,7 +49,6 @@ class _ContentState extends State<Content> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                // 🟢 LA BARRE D'ONGLETS INTERACTIVE AVEC LES TRAITS DYNAMIQUES
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -130,7 +129,6 @@ class _ContentState extends State<Content> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                // 🟢 LE CONTENU DU FORMULAIRE DYNAMIQUE
                 // Si l'onglet Sign Up est actif, on affiche en plus le champ "Full Name"
                 if (!isSignInActive) ...[
                   TextWithInputText(

@@ -31,7 +31,7 @@ class MainBottomBarItem extends StatelessWidget {
                   foregroundColor: Colors.grey,
                   padding: EdgeInsets.all(0),
                   iconColor: Color(0xff303030),
-                  iconSize: 20,
+                  iconSize: 22,
                 ),
                 onPressed: () {
                   onPressed(index);
@@ -44,7 +44,7 @@ class MainBottomBarItem extends StatelessWidget {
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.all(0),
                   iconColor: Color(0xfff45a08),
-                  iconSize: 20,
+                  iconSize: 22,
                 ),
                 onPressed: () {},
                 child: Column(

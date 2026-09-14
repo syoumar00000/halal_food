@@ -10,7 +10,7 @@ class AccountHeader extends StatelessWidget {
     const Color brandOrange = Color(0xfff45a08);
     return Container(
       width: KscreenWidth(context),
-      height: KscreenHeight(context) / 4,
+      height: KscreenHeight(context) / 4.7,
       decoration: const BoxDecoration(
         color: brandOrange,
         borderRadius: BorderRadius.only(
@@ -19,10 +19,8 @@ class AccountHeader extends StatelessWidget {
         ),
       ),
       child: Stack(
-        // ─── LA CORRECTION PRINCIPALE : Autorise l'avatar à déborder du bandeau orange ───
         clipBehavior: Clip.none,
         children: [
-          // 1. LE TITRE : Centré de manière absolue au milieu du Container
           Center(
             child: Text(
               title,
@@ -34,7 +32,6 @@ class AccountHeader extends StatelessWidget {
             ),
           ),
 
-          // 2. L'ICÔNE : Alignée au centre-gauche avec sa marge de 20 pixels
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -60,27 +57,20 @@ class AccountHeader extends StatelessWidget {
             ),
           ),
 
-          // 3. L'AVATAR POSITIONNÉ (Flotte à cheval sur le bas du bandeau)
           Positioned(
-            bottom:
-                -40, // Descendu un peu plus pour un effet "profil" à cheval plus prononcé
+            bottom: -40,
             right: 0,
             left: 0,
             child: Center(
               child: Stack(
-                clipBehavior: Clip
-                    .none, // Autorise aussi le bouton d'édition à déborder si besoin
+                clipBehavior: Clip.none,
                 children: [
                   Container(
                     width: 90,
-                    height:
-                        90, // Hauteur fixe obligatoire pour un cercle parfait
+                    height: 90,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 4,
-                      ), // Ajout d'une bordure blanche élégante
+                      border: Border.all(color: Colors.white, width: 4),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
@@ -98,7 +88,6 @@ class AccountHeader extends StatelessWidget {
                     ),
                   ),
 
-                  // Bouton d'édition (Crayon)
                   Positioned(
                     bottom: 0,
                     right: 0,

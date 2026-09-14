@@ -52,7 +52,23 @@ class _MainBottomBarState extends State<MainBottomBar>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BottomAppBar(
+    return Container(
+      height: 70,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        color: Color(0xffffffff),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(255, 230, 229, 229),
+            blurRadius: 5,
+            spreadRadius: 3,
+          ),
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
