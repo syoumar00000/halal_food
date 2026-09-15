@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h_food/providers/cart_provider.dart';
 import 'package:h_food/screens/cart/widgets/cart_list_item.dart';
+import 'package:h_food/screens/checkout/checkout_screen.dart';
 import 'package:h_food/styles/button/default_button.dart';
 import 'package:h_food/styles/spacing_style.dart';
 import 'package:h_food/widgets/empty_file/empty_container.dart';
@@ -190,7 +191,19 @@ class CartScreen extends StatelessWidget {
 
                           Center(
                             child: DefaultButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CheckoutScreen(
+                                      total: cartState.cart.total + deliveryFee,
+                                      subTotal: cartState.cart.total,
+                                      deliveryFee: deliveryFee,
+                                      cartItems: cartState.cart.cartItems,
+                                    ),
+                                  ),
+                                );
+                              },
                               label: "Checkout",
                               backgroundColor: const Color(0xfff45a08),
                               foregroundColor: const Color(0xffffffff),

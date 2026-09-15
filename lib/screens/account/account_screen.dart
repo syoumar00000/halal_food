@@ -34,7 +34,7 @@ class AccountScreen extends StatelessWidget {
             isActive: true,
             icon: Icons.replay_outlined,
             label: "Order History",
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, "/orderHistory-screen"),
           ),
           SizedBox(height: 6),
           Divider(endIndent: 20, indent: 20),

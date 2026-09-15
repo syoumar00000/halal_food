@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h_food/screens/faq/widgets/expensiontile_widget.dart';
 import 'package:h_food/widgets/header/simple_header.dart';
 
 class FaqScreen extends StatelessWidget {
@@ -10,61 +11,64 @@ class FaqScreen extends StatelessWidget {
       body: Column(
         children: [
           SimpleHeader(title: "FAQ"),
-          SizedBox(height: 30),
-          Container(
-            width: double.infinity,
-            height: 54,
-            margin: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color(0xff727272).withAlpha(50),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(height: 13),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  Text(
-                    "How do i place an order?",
-                    style: TextStyle(
-                      color: Color(0xff303030),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                  ExpensiontileWidget(
+                    title: "How do i place an order?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    color: Color(0xff303030),
-                    size: 16,
+                  ExpensiontileWidget(
+                    title: "Can i cancel my order after placing it?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "How long does delivery usually take?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "Are there any delivery fees?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "What payment method are available?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "Can i schedule an order?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "Is there a minimum order amount?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "Where can i find my promo codes?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "How do i rate a restaurant?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
+                  ),
+                  ExpensiontileWidget(
+                    title: "Can i reorder a previous meal?",
+                    body:
+                        "To place an order, simply select your favorite items from the restaurant menu, add them to your cart, and Tap 'Checkout'.You'll be guided through payment and delivery options.",
                   ),
                 ],
               ),
             ),
-          ),
-          SizedBox(height: 10),
-          ExpansionTile(
-            title: const Text(
-              "Cliquez ici pour voir le texte",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            // Couleur quand le tiroir est ouvert
-            iconColor: const Color(0xfff45a08),
-            collapsedIconColor: const Color(0xff727272),
-            // Le contenu qui va apparaître/disparaître
-            children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: const Color(0xff727272).withAlpha(20),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
-                  "Voici le texte secret qui s'affiche uniquement lorsque l'on clique sur le widget parent !",
-                  style: TextStyle(color: Color(0xff303030), fontSize: 14),
-                ),
-              ),
-            ],
           ),
         ],
       ),
