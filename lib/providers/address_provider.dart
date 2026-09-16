@@ -79,6 +79,7 @@ class AddressProvider extends ChangeNotifier {
         city: "London",
         country: "United Kingdom",
         location: GeoPoint(112.320413, 29.606391),
+        placeDescription: "Home",
       ),
       AddressModel(
         id: "2",
@@ -86,6 +87,7 @@ class AddressProvider extends ChangeNotifier {
         address2: "2213 Brown Lane",
         city: "Strasbourg",
         country: "France",
+        placeDescription: "Office",
         location: GeoPoint(7.6370168, 48.5347071),
       ),
       AddressModel(
@@ -94,6 +96,7 @@ class AddressProvider extends ChangeNotifier {
         address2: "avenue 2213",
         city: "Paris",
         country: "France",
+        placeDescription: "Home",
         location: GeoPoint(7.6370168, 48.5347071),
       ),
     ]);

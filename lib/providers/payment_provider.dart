@@ -9,7 +9,7 @@ class PaymentProvider extends ChangeNotifier {
   final List<PaymentCardModel> _cards = [
     PaymentCardModel(
       type: CreditCardType.visa(),
-      number: "xxxx xxxx xxxx 4562",
+      number: "0000 1111 2222 4562",
       name: "Sigmund Freud",
       month: 5,
       year: 90,
@@ -17,7 +17,7 @@ class PaymentProvider extends ChangeNotifier {
     ),
     PaymentCardModel(
       type: CreditCardType.visa(),
-      number: "xxxx xxxx xxxx 5589",
+      number: "3333 4444 5555 5589",
       name: "Leo Messi",
       month: 5,
       year: 90,
@@ -25,7 +25,7 @@ class PaymentProvider extends ChangeNotifier {
     ),
     PaymentCardModel(
       type: CreditCardType.mastercard(),
-      number: "xxxx xxxx xxxx 1203",
+      number: "6666 7777 8888 1203",
       name: "Edouard Mendy",
       month: 5,
       year: 90,

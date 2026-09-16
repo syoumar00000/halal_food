@@ -104,7 +104,6 @@ class _CreditCardFormScreenState extends State<CreditCardFormScreen> {
                           cvvCode,
                           isCvvFocused,
                         );
-                        print("print de val ---${val.cardNumber}");
                       },
                       label: "Save and Continue",
                       backgroundColor: Color(0xfff45a08),

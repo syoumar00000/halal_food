@@ -6,6 +6,7 @@ class AddressModel {
   String address2;
   String city;
   String country;
+  String placeDescription;
   String zipCode;
   String deliveryOption;
   String instruction;
@@ -20,6 +21,7 @@ class AddressModel {
     this.country = "",
     this.deliveryOption = "",
     this.instruction = "",
+    this.placeDescription = "",
     this.location,
   });
 

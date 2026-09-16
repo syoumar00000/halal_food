@@ -42,8 +42,8 @@ class AccountScreen extends StatelessWidget {
           AccountWidget(
             isActive: true,
             icon: Icons.credit_card,
-            label: "Save Cards",
-            onTap: () {},
+            label: "Saved Cards",
+            onTap: () => Navigator.pushNamed(context, "/savedCard-screen"),
           ),
           SizedBox(height: 6),
           Divider(endIndent: 20, indent: 20),
@@ -51,8 +51,8 @@ class AccountScreen extends StatelessWidget {
           AccountWidget(
             isActive: true,
             icon: Icons.location_on_outlined,
-            label: "Save Addresses",
-            onTap: () {},
+            label: "Saved Addresses",
+            onTap: () => Navigator.pushNamed(context, "/savedAddress-screen"),
           ),
           SizedBox(height: 6),
           Divider(endIndent: 20, indent: 20),
