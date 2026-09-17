@@ -169,7 +169,7 @@ class _ContentState extends State<Content> {
                 SizedBox(height: 15),
                 DefaultButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/home-screen");
+                    Navigator.pushNamed(context, "/locate-screen");
                   },
                   label: isSignInActive ? "Sign In" : "Sign Up",
                   backgroundColor: brandOrange,

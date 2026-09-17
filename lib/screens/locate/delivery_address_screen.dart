@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:h_food/providers/address_provider.dart';
 import 'package:h_food/styles/button/default_button.dart';
 import 'package:h_food/styles/spacing_style.dart';
 import 'package:latlong2/latlong.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {
   const DeliveryAddressScreen({super.key});
@@ -88,7 +90,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
       final response = await http
           .get(url, headers: {'User-Agent': 'h_food_app'})
           .timeout(
-            const Duration(milliseconds: 2500),
+            const Duration(seconds: 6),
           ); // Sécurité contre le gel de l'écran
 
       if (response.statusCode == 200 && mounted) {
@@ -366,11 +368,35 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                                 ),
                                 child: DefaultButton(
                                   onPressed: () {
+                                    // 1. Récupérer la position centrale de la carte
+                                    final targetPosition =
+                                        _mapController.camera.center;
+
+                                    // 2. Envoyer les données converties au Provider existant
+                                    Provider.of<AddressProvider>(
+                                      context,
+                                      listen: false,
+                                    ).updateSelectedAddressFromMap(
+                                      latitude: targetPosition.latitude,
+                                      longitude: targetPosition.longitude,
+                                      city: _cityName,
+                                      country: _countryName,
+                                      subInformation: _subInformation,
+                                    );
+
+                                    // 3. Retourner à l'écran précédent (l'adresse globale est maintenant mise à jour !)
+                                    // Navigator.pop(context);
                                     Navigator.pushNamed(
                                       context,
                                       "/home-screen",
                                     );
                                   },
+                                  /*  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      "/home-screen",
+                                    );
+                                  }, */
                                   label: "Confirm Pin Location",
                                   backgroundColor: Color(0xfff45a08),
                                   foregroundColor: Color(0xffffffff),

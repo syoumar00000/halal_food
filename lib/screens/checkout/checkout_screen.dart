@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h_food/models/cart_model.dart';
+import 'package:h_food/providers/address_provider.dart';
 import 'package:h_food/providers/cart_provider.dart';
 import 'package:h_food/providers/payment_provider.dart';
 import 'package:h_food/screens/faq/widgets/expensiontile_widget.dart';
@@ -26,6 +27,12 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartState = Provider.of<CartProvider>(context, listen: true);
+    // Écoute en temps réel les changements du Provider d'adresse
+    final addressProvider = Provider.of<AddressProvider>(context);
+    final currentAddress = addressProvider.selectedAddress;
+    final neighbourhoodCity = currentAddress != null
+        ? "${currentAddress.address1}, ${currentAddress.city}"
+        : "Aucune adresse choisie";
     return Scaffold(
       body: Column(
         children: [
@@ -94,7 +101,7 @@ class CheckoutScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  "Cité des arts, cocody",
+                                  neighbourhoodCity,
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
@@ -225,7 +232,8 @@ class CheckoutScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: DefaultButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, "/succes-screen"),
                       label: "Complete Payment",
                       backgroundColor: Color(0xfff45a08),
                       foregroundColor: Color(0xffffffff),

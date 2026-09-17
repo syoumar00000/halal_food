@@ -9,9 +9,11 @@ import 'package:h_food/screens/authentication/signin_screen.dart';
 import 'package:h_food/screens/credit_card/credit_card_screen.dart';
 import 'package:h_food/screens/faq/faq_screen.dart';
 import 'package:h_food/screens/home/home_screen.dart';
+import 'package:h_food/screens/locate/delivery_address_screen.dart';
 import 'package:h_food/screens/locate/locate_screen.dart';
 import 'package:h_food/screens/order_history/order_history_screen.dart';
 import 'package:h_food/screens/saved_card/saved_card_screen.dart';
+import 'package:h_food/screens/success/success_screen.dart';
 import 'package:h_food/screens/wishlist/wishlist_screen.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
@@ -30,6 +32,8 @@ final Map<String, Widget Function(BuildContext)> routes = {
   "/savedCard-screen": (BuildContext context) => SavedCardScreen(),
   "/savedAddress-screen": (BuildContext context) => SavedAddressesScreen(),
   "/edit-address-screen": (BuildContext context) => EditAddressScreen(),
+  "/delivery-address-screen": (BuildContext context) => DeliveryAddressScreen(),
+  "/succes-screen": (BuildContext context) => SuccessScreen(),
   //"/address-form-screen" : (BuildContext context) => AddressFormScreen(),
   // "/delivery-address-screen": (BuildContext context) => DeliveryAddressScreen(markers: markers, address: address, controller: controller)
 };

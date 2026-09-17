@@ -114,8 +114,10 @@ class _SavedAddressesScreenState extends State<SavedAddressesScreen> {
             ),
           ),
           InkWell(
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, "/edit-address-screen"),
+            onTap: () => Navigator.pushReplacementNamed(
+              context,
+              "/delivery-address-screen",
+            ),
             //Navigator.pushReplacementNamed(context, "/edit-address-screen"),
             child: Padding(
               padding: const EdgeInsets.all(20.0),

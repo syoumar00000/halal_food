@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:h_food/screens/locate/delivery_address_screen.dart';
 import 'package:h_food/styles/button/default_button.dart';
 import 'package:h_food/styles/spacing_style.dart';
 
@@ -38,15 +37,8 @@ class LocateScreen extends StatelessWidget {
             SizedBox(height: 20),
             Spacer(),
             DefaultButton(
-              onPressed: () {
-                // Navigator.pushNamed(context, "/delivery-address-screen");
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DeliveryAddressScreen(),
-                  ),
-                );
-              },
+              onPressed: () =>
+                  Navigator.pushNamed(context, "/delivery-address-screen"),
               label: "Allow Location",
               backgroundColor: Color(0xfff45a08),
               foregroundColor: Color(0xffffffff),
@@ -60,7 +52,7 @@ class LocateScreen extends StatelessWidget {
                 border: Border.all(width: 1, color: Color(0xfff45a08)),
               ),
               child: DefaultButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, "/home-screen"),
                 label: "Maybe Later",
                 backgroundColor: Color(0xffffffff),
                 foregroundColor: Color(0xfff45a08),

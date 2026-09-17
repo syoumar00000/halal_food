@@ -70,6 +70,33 @@ class AddressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Mettre à jour l'adresse sélectionnée à partir de la carte (OpenStreetMap / GPS)
+  void updateSelectedAddressFromMap({
+    required double latitude,
+    required double longitude,
+    required String city,
+    required String country,
+    required String subInformation,
+  }) {
+    _selectedAddress = AddressModel(
+      id: DateTime.now().millisecondsSinceEpoch
+          .toString(), // Génère un ID temporaire unique
+      address1: subInformation, // Détails de la rue/quartier
+      address2: "",
+      city: city,
+      country: country,
+      placeDescription:
+          "Custom Location", // Label indiquant que l'adresse vient de la carte
+      location: GeoPoint(
+        longitude,
+        latitude,
+      ), // Ajustez l'ordre selon votre modèle (généralement lat, lng ou lng, lat)
+    );
+
+    // Notifie toute l'application du changement d'adresse de livraison
+    notifyListeners();
+  }
+
   Future<List<AddressModel>> getAll() async {
     _addresses.addAll([
       AddressModel(

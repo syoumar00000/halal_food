@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:h_food/providers/address_provider.dart';
 import 'package:h_food/screens/home/widgets/icon_container.dart';
 import 'package:h_food/styles/input/outline_input.dart';
 import 'package:h_food/styles/spacing_style.dart';
+import 'package:provider/provider.dart';
 
 class MainAppBar extends StatefulWidget {
   const MainAppBar({super.key});
@@ -13,6 +15,18 @@ class MainAppBar extends StatefulWidget {
 class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
+    // Écoute en temps réel les changements du Provider d'adresse
+    final addressProvider = Provider.of<AddressProvider>(context);
+    final currentAddress = addressProvider.selectedAddress;
+
+    final cityCountry = currentAddress != null
+        ? "${currentAddress.city}, ${currentAddress.country}"
+        : "Sélectionner une adresse";
+
+    final neighbourhoodCity = currentAddress != null
+        ? currentAddress.address1
+        : "Aucune adresse choisie";
+
     return Container(
       width: KscreenWidth(context),
       height: KscreenHeight(context) / 3.5,
@@ -38,7 +52,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Cocody, cote d'ivoire",
+                      cityCountry,
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontSize: 18,
@@ -46,7 +60,7 @@ class _MainAppBarState extends State<MainAppBar> {
                       ),
                     ),
                     Text(
-                      "cité des arts, cocody",
+                      neighbourhoodCity,
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontSize: 16,
